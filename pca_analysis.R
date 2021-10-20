@@ -1,8 +1,8 @@
 library(dplyr)
 library(ggplot2)
 library(corrplot)
-
-data = read.csv('datasets/pca/School_qualifications2.csv', sep = ',')
+library(factoextra)
+data = read.csv('datasets/pca/BodyFat.csv', sep = ',')
 
 # Data Information
 names(data) # Column names
@@ -70,13 +70,13 @@ ggplot(data = data.frame(prop_varianza, pc = 1:4),
   labs(x = "Componente principal",
        y = "Prop. de varianza explicada")
 
-ggplot(data = data.frame(prop_varianza_acum, pc = 1:ncol(data)),
-       aes(x = pc, y = prop_varianza_acum, group = 1)) +
-  geom_point() +
-  geom_line() +
-  theme_bw() +
-  labs(x = "Componente principal",
-       y = "Prop. varianza explicada acumulada")
+#ggplot(data = data.frame(prop_varianza_acum, pc = 1:ncol(data)),
+#       aes(x = pc, y = prop_varianza_acum, group = 1)) +
+#  geom_point() +
+#  geom_line() +
+#  theme_bw() +
+#  labs(x = "Componente principal",
+#       y = "Prop. varianza explicada acumulada")
 
 ggplot(data = data.frame(prop_varianza_acum, pc = factor(1:ncol(data))),
        aes(x = pc, y = prop_varianza_acum, group = 1)) +
@@ -86,3 +86,22 @@ ggplot(data = data.frame(prop_varianza_acum, pc = factor(1:ncol(data))),
   theme_bw() +
   labs(x = "Componentes principales", 
        y = "Prop. varianza explicada acumulada")
+
+fviz_eig(pca)
+
+fviz_pca_ind(pca,
+             col.ind = "cos2", # Color by the quality of representation
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE     # Avoid text overlapping
+)
+
+fviz_pca_var(pca,
+             col.var = "contrib", # Color by contributions to the PC
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+             repel = TRUE     # Avoid text overlapping
+)
+
+fviz_pca_biplot(pca, repel = TRUE,
+                col.var = "#2E9FDF", # Variables color
+                col.ind = "#696969"  # Individuals color
+)
