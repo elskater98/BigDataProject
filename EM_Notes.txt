@@ -1,0 +1,125 @@
+Mixture Models
+
+- models that usually combine more than one variable,
+and each of these variables can have distinc distribution
+
+- in our case (our analysis) the Mixuture model will be a Gaussian Mixture model, as we will combine two or more normal distributions
+
+- a mixture model is a probabilistic model for representing a population composed by several sub-populations, without requiring that an observed data set should identify the sub-population to which an individual observation belongs
+**the EM algorithm can be used to classify and recognise these Gaussian sub-populations**
+
+
+- let's assume we take a sample of n individuals of the real population of height h
+- a tentative model for this data set can be defined as: μ
+
+    π1 · f1(h) + (1 - π1) · f2(h)
+
+where fi(h) ~ N(μi, σi), and 0 <= π <= 1 being the proportion of individual of the sub-population 1, for i = 1, 2.
+
+- this above formula is for a mixture model of two sub-populations but we can have as many sub-populations as we need or recognise in our analysis
+- if we suspect in our datasets we have 5 clusters, we can try via EM algorithm to classify in 5 sub-populations considering a mixture model with 5 distinct density distributions
+
+- idea of EM analysis, I have a dataset, and I want to classify this dataset, to find clusters inside this dataset
+
+ - π1 is the probability of finding one sub-population
+
+
+Maximum likelihood estimation (MLE) method
+
+- one step in the EM algorithm is to obtain the Maximum likelihood estimators of a given statistical model
+- the MLE method is a statistical method for estimating the parameters of a statistical model given observations
+- this method maximizes the likelihood of making the obeservations given the parameters of a statistical model
+
+- we will have the ponderation πi parameter and the μi (parameter value expectation) for each sub-population
+
+- this method is very good estimating parameteres, this method is just getting the data and obtaining the best parameters/estimators based on our data
+
+
+
+MLE for a Gaussian mixture model
+
+- now using the MLE method we want to obtain estimators of parameters of the Gaussian mixture model, i.e. μ1, μ2, σ1, σ2 and π1, when considering two density distributions
+where π1 is a new parameter defined in the Gaussian mixture model which represents the becoming/clustering probability
+
+- if there are more sub-populations in our dataset we must have more parameters to estimate and more π parameters to categorize/classify the sub-populations
+but, that will depen on the clusters we might want to classify in our dataset
+
+- this new π1 parameter should be estimated based on news variables defined for each individual from the sample, in this bimodal will get Z1 and Z2 extra variables for each individual
+
+- so now for each individual we define new variables,
+
+    0 <= Zij <= 1 for i=1,2 and j= 1, ..., n.
+
+
+- these new variables (z1, z2) are the probability that the value of interest is from the sub-population 1 or from sub-population 2
+
+- so if using EM algorithm I will be able to estimate this two new probability variables, I will be able then to classify our dataset
+that's why considering the normal distribution of our clusters, so depending on the parameters value the individual will likely become nearer to one specific sub-population
+
+
+
+- now our initial dataset has two new variables Z1 and Z2, where Z2 = 1 - Z1
+- thus, we have 2 * size(n) missing values
+
+- at first we must guess and set for each individual the possible Z1 and Z2 values by own recognition
+- as this is an iterative method
+
+- then after the first iteration over all the individuals,
+we can start estimating the parameters of our Gaussian mixture model via the MLE method
+
+- as the fact to define Z1 and Z2 is to estimate π1
+
+
+- now using the MLE method we can obtain estimates of the parameters of the Gaussian mixture model
+- the parameters of the model are μ1, μ2, σ1, σ2 and π1, considering two sub-populations
+- where π1 multiplies the density distribution of the first cluster, but also ponderates the second cluster via its inverse (1 - π1)
+
+
+- we dont need to go for each individual guessing the Z initial values, we might use a general setting, but...
+** the initial guesses are very important for the iteration method, because are the ones which will determine if the algorithm converges or loops till infinite**
+converges == get constant/fixed estimator model values
+
+
+
+μ1 = (Σ of Z1j · hi) / (Σ of Z1j) , where h is height (variable)
+
+σ1 = (1/Σ of Z1j) · (Σ of Z1j · (hj - μ1)^2)
+
+π1 = (Σ of Z1j) / n
+
+
+- instead of initially guess for each individual the Z1 and Z2 values, we can guess the expected values for each sub-population μ1 and μ2, for the first iteration (1),
+and start estimating from them
+- just give coherent values which identifies the sub-populations better to be expected ones
+
+
+- π1 is the proportion of the sub-populations
+
+
+
+The Extra iterations => apply the Expectation algorithm; the estimate of a parameter is a random variable
+
+- our objective is to obtain the best estimates for the new variables Z1 and Z2
+- this estimates Z will help us to classify our dataset
+
+- an estimated values is a random variable defined by a probability distribution
+each time we take a sample of the whole population we will obtain different estimated values as the sample is randomly picked as well
+the value of which will try to approximate the whole population mean/expectation
+
+- moreover, a good approximation of this population parameter could be obtained as the average of all these sample estimators values,
+thus a good approximation for the real whole population value is achieved
+
+
+- so, from all the possible values that Zij can take from distinct re-samplings of our real population we want to obtain the "average" one
+
+
+Z(1) => μ(1) => Exp(1) => Z(2) => μ(2) => Exp(2) => ... n
+
+in every iteration we are working with a new randomly sample
+
+
+
+
+
+- epsilon value: will determine when to stop the iterations, when the difference between 0(i) and 0(i+1) is less, MEANS THE ALGORITHM STARTS CONVERGING, changes are acceptable
+** for convenience a small epsilon **
