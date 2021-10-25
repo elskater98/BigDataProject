@@ -85,7 +85,9 @@ epsi<-0.0001 # estimators difference, says when the algorithm converges
 
 
 #Plot to show the evolution of estimates of the parameter pi1
-plot(0,pi1,ylim=c(0,1),xlim=c(0,200))
+plot(0,pi1,ylim=c(0,1),xlim=c(0,200)) ## in this plot will observe the pi converging, which represents the proportion of belonging to one or another sub-population
+
+
 ###########################LOOP############################
 for(j in 1:n_simul) { #First For loop
   if(break_s==0){
@@ -146,7 +148,8 @@ Mu1; Mu2; V1; V2; pi1
 
 ####### Genereta new image ####
 ### We can display Z1 or Z2 ####
-#x11()
+
+# Z values are the probabilities of belong to one or another sub-population
 
 X_image2<-matrix(t(Z1),nrow=sqrt(n),ncol=sqrt(n),byrow=F)
 image(X_image2)
@@ -154,10 +157,12 @@ image(X_image2)
 ### assign 0 or 1 in terms of Z1 probabilities ###
 Z11<-array(rep(0,n))
 for(i in 1:n){
-if(Z1[i]>0.5){Z11[i]=1}
+  if(Z1[i]>=pi1){
+    Z11[i]=1
+  }
 }
 Z11_image<-matrix(Z11,nrow=sqrt(n),ncol=sqrt(n),byrow=F)
-x11()
+
 image(Z11_image)
 
 
