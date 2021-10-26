@@ -198,9 +198,9 @@ X_image2<-matrix(t(Z1),nrow=sqrt(n),ncol=sqrt(n),byrow=F)
 image(X_image2)
 
 ### assign 0 or 1 in terms of Z1 probabilities ###
-### cheking results
+### checking results
 Z11<-array(rep(0,n))
-data2<-read.table(file.path(data_dir,"Batman.data"))
+data2<-read.table(file.path(data_dir,"Barca.data"))
 X2<-data2$X
 
 for(i in 1:n){
