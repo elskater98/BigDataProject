@@ -147,25 +147,26 @@ for(j in 1:n_simul) { # First For loop: controls de maximum number of EM iterati
     ## the ones are coherent with our pre-analysis when observing the data-set distribution
      
     ### calculate new Z1, values of new variables ###
-    Exp1<-c() ##Here we set vector Exp1, expectation of the Z1 values
-    for(i in 1:n){
+    Exp1<-c() ## Here we set vector Exp1, expectation of the Z1 values
+    for(i in 1:n) {
       f1<-dnorm(X[i],mean=Mu1,sd=sqrt(V1)) # density function for a Normal variable
       f2<-dnorm(X[i],mean=Mu2,sd=sqrt(V2))
-      Exp1[i]<-(pi1*f1)/(pi1*f1+(1.0-pi1)*f2) #Expectation of Z1 values
+      Exp1[i]<-(pi1*f1)/(pi1*f1+(1.0-pi1)*f2) # Expectation of Z1 values
     }
-    ###we can show the Exp1 values in an histogram
+    
+    ### we can show the Exp1 values in an histogram
     #hist(Exp1)
   
-    ### calcul new Z2, values of new variables ###
+    ### calculate new Z2, values of new variables
     Exp2<-c()
     for(i in 1:n){
       f1<-dnorm(X[i],mean=Mu1,sd=sqrt(V1))
       f2<-dnorm(X[i],mean=Mu2,sd=sqrt(V2))
-      Exp2[i]<-(pi2*f2)/(pi2*f2+(1.0-pi2)*f1) #Expectation of Z2 values
+      Exp2[i]<-(pi2*f2)/(pi2*f2+(1.0-pi2)*f1) # Expectation of Z2 values
     }
     
     ## note that Exp2 can be just computed as Exp2=1-Exp1
-    #Exp2 = 1-Exp1
+    #Exp2=1-Exp1
     
     # plot update the evolution of pi (proportion of the mixture model)
     points(j, pi1, pch=19) # x = iteration number, y = absolute pi value, pch = specify the plotting character
@@ -197,16 +198,19 @@ X_image2<-matrix(t(Z1),nrow=sqrt(n),ncol=sqrt(n),byrow=F)
 image(X_image2)
 
 ### assign 0 or 1 in terms of Z1 probabilities ###
+### cheking results
 Z11<-array(rep(0,n))
+data2<-read.table(file.path(data_dir,"Batman.data"))
+X2<-data2$X
+
 for(i in 1:n){
-  if(Z1[i]>=pi1){
+  if(X2[i]>=pi1){
     Z11[i]=1
   }
 }
+
 Z11_image<-matrix(Z11,nrow=sqrt(n),ncol=sqrt(n),byrow=F)
-
 image(Z11_image)
-
 
 ### To generate a graphic ###
 postscript(file="Image3.ps")
