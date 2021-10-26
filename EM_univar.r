@@ -1,57 +1,70 @@
-### EM algorithm for a mixture model of two univariate Gaussian distribution ###
+### EM algorithm for a mixture model of two uni-variate Gaussian distribution ###
 
 # Load data --------------------------------------------------------------------
 data_dir <- "./datasets/em/"
 
-data <- read.table(file.path(data_dir,"Picture.data"),header=TRUE)
-data <- read.table(file.path(data_dir,"Picture1.data"),header=TRUE)
-data <- read.table(file.path(data_dir,"Picture2.data"),header=TRUE) 
-data <- read.table(file.path(data_dir,"Acces.data"),header=TRUE)
-data <- read.table(file.path(data_dir,"Barca.data"),header=TRUE)
-data <- read.table(file.path(data_dir,"Batman.data"),header=TRUE)
-data <- read.table(file.path(data_dir,"BMW.data"),header=TRUE)
-data <- read.table(file.path(data_dir,"Face.data"),header=TRUE)
-data <- read.table(file.path(data_dir,"Ferrari.data"),header=TRUE)
-data <- read.table(file.path(data_dir,"Homer1.data"),header=TRUE)
-data <- read.table(file.path(data_dir,"Info.data"),header=TRUE)
-data <- read.table(file.path(data_dir,"Lion.data"),header=TRUE)
-data <- read.table(file.path(data_dir,"OK.data"),header=TRUE)
-data <- read.table(file.path(data_dir,"Porqui.data"),header=TRUE)
-data <- read.table(file.path(data_dir,"Robot.data"),header=TRUE)
-data <- read.table(file.path(data_dir,"Youtube.data"),header=TRUE)
+## Read data
+data <- read.table(file.path(data_dir,"Picture.data"))
+data <- read.table(file.path(data_dir,"Picture1.data"))
+data <- read.table(file.path(data_dir,"Picture2.data"))
+data <- read.table(file.path(data_dir,"Acces.data"))
+data <- read.table(file.path(data_dir,"Barca.data"))
+data <- read.table(file.path(data_dir,"Batman.data"))
+data <- read.table(file.path(data_dir,"BMW.data"))
+data <- read.table(file.path(data_dir,"Face.data"))
+data <- read.table(file.path(data_dir,"Ferrari.data"))
+data <- read.table(file.path(data_dir,"Homer1.data"))
+data <- read.table(file.path(data_dir,"Info.data"))
+data <- read.table(file.path(data_dir,"Lion.data"))
+data <- read.table(file.path(data_dir,"OK.data"))
+data <- read.table(file.path(data_dir,"Porqui.data"))
+data <- read.table(file.path(data_dir,"Robot.data"))
+data <- read.table(file.path(data_dir,"Youtube.data"))
 
-# show beggining of the data as read # show the pre-parsed data
+# show beginning of the data as read # show the pre-parsed data
 head(data)
 
-# rename and show the dataset
-X<-data$X
+# show the structure of the data (type, shape, number of variables, kind of variables)
+str(data)
+
+X<-data$X # getting and assigning the variable X from the data.frame to work directly with an array of data
 X
 
-# some data information
-mean(X) # the mean, shows the central expectation of the whole dataset distribution
-var(X) # the variance, measure of how much value is away from the mean value.
+### the mean and variance are very important
+### they provide a global view of the values
+mean(X) # the mean, shows the central expectation of the whole data-set distribution, among all possible inner clusters
+var(X) # the variance, measure of how much value is away from the mean/expectation value. the range.
 
 n<-length(X) # the size, how many individuals?
 n
 
 class(X) # what kind of values? numerical variables
 
+### an image is basically a large interpreted amount of numbers
+### this datasets aims to represent an image, where each individual corresponds to a pixel value
+### commonly there are RGB images based on three channel pixel representation
+### but here, we have only one channel as there is only one variable, therefore, one value for pixel
+
 ### this dataset is an image, we must transform the data as a matrix where each individual corresponds to a pixel
 ### transform X variable in a matrix, you can rotate image by changing byrow=T o byrow=F
-X_image<-matrix(X, nrow=sqrt(n), ncol=sqrt(n), byrow=F) # transpose the unidimensional data array to a bidimensional matrix
-class(X_image) # matrix array
+X_image<-matrix(X, nrow=sqrt(n), ncol=sqrt(n), byrow=F) # transpose the uni-dimensional data array to a bi-dimensional matrix
+class(X_image) # type: matrix array
+X_image
 
 # display the matrix numerical values in an image
 # the image is just an interpretation of the pixel values
-image(X_image)
+image(X_image) # represent the matrix array into an image 
 
 ### we observe we have pixel values
-### and we also realize about the distribution of these pixel values observing how the image looks, cuz there are clear differences/variations
-### apparently we can assume inside this dataset several sub-population or groups of similars
+### the color of the pixel is proportional to the value of that pixel
+### image interpretation => darker color means higher value, lighter color means lower value
 
-### observe histogram of the values, to visualize the distribution of the pixel values
+### also, we realize about the distribution of these pixel values observing how the image looks, because there are clear differences/variations
+### apparently we can assume inside this data-set several sub-population or groups of similars
+
+### observe histogram of the values, to visualize the distribution of the pixel values in numerical/statistical terms
 ### it has a bell shape, composed by random variables
-### we may assume the dataset values follows a normal distribution
+### we may assume the data-set values follows a normal distribution
 hist(X_image)
 
 
@@ -172,3 +185,18 @@ layout(matrix(c(1,2),1,2,byrow=TRUE),respect=FALSE)
 image(X_image)
 image(Z11_image)
 dev.off()
+
+
+
+#### Project presentation
+#### take one dataset and analyze it
+#### show we understand statistical tools and show we know what we are actually doing
+#### show/present the dataset and say the type of data we have
+#### then explain what we want to do and why
+#### then start analysing the data
+
+#### pca "dependence structure"
+
+
+
+
