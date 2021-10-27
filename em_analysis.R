@@ -129,8 +129,8 @@ for(j in 1:n_simul) { # First For loop: controls de maximum number of EM iterati
       Z2<-round(Exp2, 4)
       
       ## MLE estimators for a Gaussian mixture model
-      Mu1<-round((t(Z1) %*% X)/sum(Z1),4)
-      Mu2<-round((t(Z2) %*% X)/sum(Z2),4)
+      Mu1<-round((t(Z1) %*% X)/sum(Z1),4) # maximization step
+      Mu2<-round((t(Z2) %*% X)/sum(Z2),4) # maximization step
       B1<-X-mx1 %*% Mu1
       B2<-X-mx1 %*% Mu2
       V1<-round((t(B1) %*% diag(array(Z1)) %*% B1)/sum(Z1),4)
@@ -188,6 +188,10 @@ for(j in 1:n_simul) { # First For loop: controls de maximum number of EM iterati
 
 ### Print estimated parameters ###
 Mu1; Mu2; V1; V2; pi1;
+
+# maximization step
+hist(Z1)
+hist(Z2)
 
 ####### Generate new image ####
 ### We can display Z1 or Z2 ####
