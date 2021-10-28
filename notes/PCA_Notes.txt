@@ -1,0 +1,86 @@
+/************************ Principal Component Analysis (PCA) Notes ************************/
+
+- large data-sets are increasingly comon, and often difficult to interpret
+- if they get a lot of dimensions and kinds of variables, we may not see inferred information there
+
+- we need a way to interpret them, assuring we got as much information as possible
+- also in terms of resources, it's too difficult to work with super large datasets, or
+represent in two/three dimensions plots some kind of relational information, which should need specific analysis
+
+- in other words, the complexity of analyze, extract the information, and understand the data could be a challenge
+
+- one option when there are lots of dimensions
+- dimension = variables = columns
+- is reduce the dimensionality in an interpretable way, such that most of the information in the data is preserved
+- or at least, the information we want to preserve
+
+- PCA Idea: simple-reduce the dimensionality of a data-set while preserving as much 'variability' (information) as possible,
+minimazing information loss
+
+
+Steps
+
+1. Analyse the data and transform it to a matrix to work with
+    - check if we can put in practice the PCA technique, via the correlation matrix
+
+- we will see that some variables have correlation to others, that means we can use PCA, as there are relations
+- but if there's no relation, the PCA technique makes no sense, because we can't combine variables not having relations
+
+- let's suppose we can apply the PCA
+
+2. Standarize the matrix
+    - centrate the matrix, thus, removing the units to enable the comparison among all the variables
+    - reduce the matrix, to work with lower values, that makes the work easier
+
+- if we got different units for our variables, such as 'cm' and 'kg' we should remove those ones by centrating the matrix
+- centrate matrix: divide and substract for each individual by its standard deviation
+    - in this way, the values will get centered over the zero coordinates
+
+
+- sometimes we will get data-sets with the same units for all the variables, in those cases, we don't need to standaraze the matrix, but would be a good practice
+- if same units, you may apply the covariance-variance matrix to do the reduction directly
+
+- But for statistical convenience you should standarize the matrix, as also it will limit the variance and you might get better results in correlation terms
+
+
+3. FInally, we will calculate eigenvectors and values to know the principal components and the values of the Z matrix
+
+
+
+- Correlation matrix: allows us to interpret the values obtained and decide if we can use the PCA technique
+- high correlation is perfect
+
+
+X Matrix, Y Matrix, Z Matrix
+
+- the Y matrix is the centrated one and reduced
+- centrate matrix: containing an adimensional values to work with that will help us with their interpretation
+- the information will be transformed to the relations among dimensions
+
+- to reduce the data we use the Covariance-variance method
+- Covariance allows us to measure of how two variables change with respect to each other
+
+
+- the Z matrix, is the result of multiplying the Y matrix with the eigenvectors, the ones founded by the correleation X matrix
+
+
+
+
+- the eigenvalues and the eigenvectors are propietary values and propietary vectors as said in the algebra premisses
+
+- the matrix R => corresponds to the correlation matrix is so important
+- that matrix validates the use of this technique
+
+- if we are not getting correlations we cant reduce the dimensionality of our data-set,
+as there are no relations between the variables/diensions, thus, we can't combine them
+
+- so important to analyse the correlations first
+
+- if we got 16 variables/dimensions we will get on our analysis 16 eigenvectors and 16 eigenvalues for those ones
+- the best eigenvector, will be the one provinding the maximum information combining all the variables
+
+- one eigenvector is based upon one principal component, which combines with all the others trying to relate to them
+
+- as much information for eigenvector, more variability, which implies directly more projection, thus, more information
+- the length in absolute value of the eigenvectors, represented in such biplots, is directly proportional to the variability, thus, importance
+
