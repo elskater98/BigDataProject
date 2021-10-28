@@ -98,7 +98,7 @@ hist(X_image)
 ### we could have also considered starting with new values for the Z1, Z2 new random variables, but I prefer to give values to Mu1, Mu2, etc. Easier
 Mu1<-185 # expected value for the first sub-population
 Mu2<-165 # expected value for the second sub-population
-V1<-2000# variance of the initial whole data-set
+V1<-272# variance of the initial whole data-set
 V2<-272
 pi1<-0.7 # mixture model proportion for the first sub-population
 pi2<-1-pi1
@@ -191,7 +191,6 @@ for(j in 1:n_simul) { # First For loop: controls de maximum number of EM iterati
 ### Print estimated parameters ###
 Mu1; Mu2; V1; V2; pi1;
 
-# maximization step
 hist(Z1)
 hist(Z2)
 
@@ -224,3 +223,18 @@ layout(matrix(c(1,2),1,2,byrow=TRUE),respect=FALSE)
 image(X_image)
 image(Z11_image)
 dev.off()
+
+
+
+#### Project presentation
+#### take one dataset and analyze it
+#### show we understand statistical tools and show we know what we are actually doing
+#### show/present the dataset and say the type of data we have
+#### then explain what we want to do and why
+#### then start analysing the data
+
+#### pca "dependence structure"
+
+
+
+
