@@ -38,6 +38,8 @@ var(X) # the variance, measure of how much value is away from the mean/expectati
 n<-length(X) # the size, how many individuals?
 n
 
+summary(X)
+
 class(X) # what kind of values? numerical variables
 
 ### an image is basically a large interpreted amount of numbers
@@ -96,7 +98,7 @@ hist(X_image)
 ### we could have also considered starting with new values for the Z1, Z2 new random variables, but I prefer to give values to Mu1, Mu2, etc. Easier
 Mu1<-185 # expected value for the first sub-population
 Mu2<-165 # expected value for the second sub-population
-V1<-272# variance of the initial whole data-set
+V1<-2000# variance of the initial whole data-set
 V2<-272
 pi1<-0.7 # mixture model proportion for the first sub-population
 pi2<-1-pi1
@@ -204,11 +206,11 @@ image(X_image2)
 ### assign 0 or 1 in terms of Z1 probabilities ###
 ### checking results
 Z11<-array(rep(0,n))
-data2<-read.table(file.path(data_dir,"Barca.data"))
+data2<-read.table(file.path(data_dir,"Batman.data"))
 X2<-data2$X
 
 for(i in 1:n){
-  if(X2[i]>=pi1){
+  if(Z1[i]>=pi1) {
     Z11[i]=1
   }
 }
@@ -222,18 +224,3 @@ layout(matrix(c(1,2),1,2,byrow=TRUE),respect=FALSE)
 image(X_image)
 image(Z11_image)
 dev.off()
-
-
-
-#### Project presentation
-#### take one dataset and analyze it
-#### show we understand statistical tools and show we know what we are actually doing
-#### show/present the dataset and say the type of data we have
-#### then explain what we want to do and why
-#### then start analysing the data
-
-#### pca "dependence structure"
-
-
-
-
