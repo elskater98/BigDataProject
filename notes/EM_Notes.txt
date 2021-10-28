@@ -1,3 +1,5 @@
+/************************ Expectation - Maximization (EM) Algorithm Notes ************************/
+
 Mixture Models
 
 - models that usually combine more than one variable,
