@@ -1,5 +1,10 @@
 /************************ Principal Component Analysis (PCA) Notes ************************/
 
+PCA => statistical procedure to describte the data (descriptive statistics)
+- each element adjusted by the mean of each variable => we obtain the centered and reduced X matrix
+- if the variables considered in the analysis are measured in distinc units, it is advisable to divide each value by its respective standard deviation => use the same units, thus, let us compare them
+
+
 - large data-sets are increasingly comon, and often difficult to interpret
 - if they get a lot of dimensions and kinds of variables, we may not see inferred information there
 
@@ -60,9 +65,7 @@ X Matrix, Y Matrix, Z Matrix
 - to reduce the data we use the Covariance-variance method
 - Covariance allows us to measure of how two variables change with respect to each other
 
-
 - the Z matrix, is the result of multiplying the Y matrix with the eigenvectors, the ones founded by the correleation X matrix
-
 
 
 
@@ -84,3 +87,20 @@ as there are no relations between the variables/diensions, thus, we can't combin
 - as much information for eigenvector, more variability, which implies directly more projection, thus, more information
 - the length in absolute value of the eigenvectors, represented in such biplots, is directly proportional to the variability, thus, importance
 
+
+- this technique is a so good practice if you want to analyse data, and too simple to apply in R
+- however, is focused on linear models, or try to work as a linear one
+- in some cases can't be applied
+- but there are other alternatives, such as t-Distributed Stochastic Neighbor Embedding, Sammon mapping, Canonical Correlation Analysis and Laplacian Eigenmaps
+
+
+
+ScreePlot - displays the eigenvalues in a downward cureve sorted by largest to smalles (bar plot)
+- we may see the amount of information by using one or more components
+
+Individual distribution plot - display how the individuals are distributed using points among the space
+- if the points are nearest it means that are similar, it means that are correlated
+- but maybe if there's one individual or some super far away from the others, they should be considered as outliers with no correlation
+- also is so good to predict or estimate about how many clusters, how we can group the data
+
+Biplot - simply joins the previous plots, variance and individual, and try to represent them in a two dimensional way

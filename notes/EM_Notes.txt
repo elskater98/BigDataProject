@@ -1,5 +1,7 @@
 /************************ Expectation - Maximization (EM) Algorithm Notes ************************/
 
+EM => statistical technique used to estimate parameters in statistical models (statistical inference and statistical classification)
+
 Mixture Models
 
 - models that usually combine more than one variable,
@@ -118,8 +120,6 @@ thus a good approximation for the real whole population value is achieved
 Z(1) => μ(1) => Exp(1) => Z(2) => μ(2) => Exp(2) => ... n
 
 in every iteration we are working with a new randomly sample
-
-
 
 
 
