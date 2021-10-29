@@ -160,15 +160,15 @@ for(j in 1:n_simul) { # First For loop: controls de maximum number of EM iterati
     #hist(Exp1)
   
     ### calculate new Z2, values of new variables
-    Exp2<-c()
-    for(i in 1:n){
-      f1<-dnorm(X[i],mean=Mu1,sd=sqrt(V1))
-      f2<-dnorm(X[i],mean=Mu2,sd=sqrt(V2))
-      Exp2[i]<-(pi2*f2)/(pi2*f2+(1.0-pi2)*f1) # Expectation of Z2 values
-    }
+    #Exp2<-c()
+    #for(i in 1:n){
+    #  f1<-dnorm(X[i],mean=Mu1,sd=sqrt(V1))
+    #  f2<-dnorm(X[i],mean=Mu2,sd=sqrt(V2))
+    #  Exp2[i]<-(pi2*f2)/(pi2*f2+(1.0-pi2)*f1) # Expectation of Z2 values
+    #}
     
-    ## note that Exp2 can be just computed as Exp2=1-Exp1
-    #Exp2=1-Exp1
+    ## note that Exp2 can be just computed as Exp2=1-Exp1 ##
+    Exp2=1-Exp1
     
     # plot update the evolution of pi (proportion of the mixture model)
     points(j, pi1, pch=19) # x = iteration number, y = absolute pi value, pch = specify the plotting character
