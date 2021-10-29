@@ -1,6 +1,6 @@
 ### EM algorithm for a mixture model of two uni-variate Gaussian distribution ###
 
-# Load data --------------------------------------------------------------------
+# Load data
 data_dir <- "./datasets/em/"
 
 ## Read data
@@ -196,7 +196,6 @@ hist(Z2)
 
 ####### Generate new image ####
 ### We can display Z1 or Z2 ####
-
 # Z values are the probabilities of belong to one or another sub-population
 
 X_image2<-matrix(t(Z1),nrow=sqrt(n),ncol=sqrt(n),byrow=F)
@@ -219,22 +218,7 @@ image(Z11_image)
 
 ### To generate a graphic ###
 postscript(file="Image3.ps")
-layout(matrix(c(1,2),1,2,byrow=TRUE),respect=FALSE)
+layout(matrix(c(1,2),1,2, byrow=TRUE), respect=FALSE)
 image(X_image)
 image(Z11_image)
 dev.off()
-
-
-
-#### Project presentation
-#### take one dataset and analyze it
-#### show we understand statistical tools and show we know what we are actually doing
-#### show/present the dataset and say the type of data we have
-#### then explain what we want to do and why
-#### then start analysing the data
-
-#### pca "dependence structure"
-
-
-
-

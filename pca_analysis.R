@@ -2,7 +2,12 @@ library(dplyr)
 library(ggplot2)
 library(corrplot)
 library(factoextra)
-data = read.csv('datasets/pca/BodyFat.csv', sep = ',')
+
+# Load data
+data_dir <- "./datasets/pca/"
+
+# Read data
+data = read.csv(file.path(data_dir, 'BodyFat.csv'), sep = ',')
 
 # Data Information
 names(data) # Column names
@@ -10,8 +15,6 @@ sapply(data, typeof) # Column types
 dim(data) # Dimensions
 summary(data) # Summary
 View(data) # View data as table
-
-
 
 # Step by step PCA
 # https://davetang.org/muse/2012/02/01/step-by-step-principal-components-analysis-using-r/
@@ -23,33 +26,38 @@ centrate_data <- data
 # Mean for each column (Standardization)
 for (i in names(centrate_data)) {
   centrate_data[i] <- data[[i]] - mean(data[[i]])
-  
 }
 
 centrate_data <- as.matrix(centrate_data) # dataframe to matrix
 
 # Correlation Matrix
-R <- cor(centrate_data, method = "pearson")
+R <- cor(centrate_data, method="pearson")
 corrplot(R, method="color")
 
+### Compute the S matrix (variance-covariance matrix of X) ###
 # variance-covariance matrix of X
 S <- (t(centrate_data) %*% centrate_data) / (nrow(data))
 
-D_1s <-
-  diag(sqrt(1 / diag(S)), nrow = ncol(data), ncol = ncol(data))
+##Remenber the variance-covariance matrix are the poblational parameters (/n), try sum(B[,1]^2)/n=S[1,1], sum(B[,2]^2)/n=S[2,2], or
+##sum(B[,1]*B[,2])/n=S[1,2]=S[2,1]
 
+### Obtain a diagonal matrix D_1s of order m with the inver of standard deviation (using S)
+D_1s <- diag(sqrt(1 / diag(S)), nrow = ncol(data), ncol = ncol(data))
+
+### Now D_1s is a diagonal matrix of order m with the inver of standard deviation
+### Obtain the Y matrix (centrered and reduced X matrix) ###
 Y <- centrate_data %*% D_1s # Centered matrix and reduced
 
-### Obtain Eigenvalues and Eigenvector from matrix R ###
+###Note that variance-covariance matrix of Y is equal to the R Matrix
+###Try sum(Y[,1]^2)/n=R[1,1], sum(Y[,2]^2)/n=R[2,2], or sum(Y[,1]*Y[,2])/n=R[1,2]=R[2,1]
 
+### Obtain Eigenvalues and Eigenvector from matrix R ###
 Eig <- eigen(R)
 
 ### Eigenvalues ###
-
 Eig$values
 
 ### Eigenvectors ###
-
 Eig$vectors
 
 # R Library
