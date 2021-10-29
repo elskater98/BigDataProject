@@ -208,7 +208,7 @@ data2<-read.table(file.path(data_dir,"Batman.data"))
 X2<-data2$X
 
 for(i in 1:n){
-  if(Z1[i]>=pi1) {
+  if(X2[i]>=pi1) {
     Z11[i]=1
   }
 }
